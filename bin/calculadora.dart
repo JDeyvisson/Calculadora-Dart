@@ -5,30 +5,50 @@ class Calculadora {
   String? operacao;
   double? numeroUm;
   double? numeroDois;
+  double? resultado;
 
 
   void run(){
 
    print("Escolha a operação (+, -, *, /)");
    operacao = stdin.readLineSync();
-   numero1();
+   if ( operacao !=null && ["+", "-", "*", "/"].contains(operacao) ) {
+      numero1();
+   }else{
+      print("Digite uma operação correta");
+      run();
 
+   }
   }
 
   void numero1(){
-
+   
    print("Digite o primeiro numero");
-   numeroUm = double.parse(stdin.readLineSync()!);
-   numero2();
+   numeroUm = double.tryParse(stdin.readLineSync()!);
+   if(numeroUm != null){
+      numero2();
+
+   }else{
+      print("Insira um numero valido");
+      numero1();
+
+   }
+   
    
   }
 
   void numero2(){
 
    print("Digite o segundo numero");
-   numeroDois = double.parse(stdin.readLineSync()!);
+   numeroDois = double.tryParse(stdin.readLineSync()!);
+   if(numeroDois != null){
+      calcular();
+   }else{
+      print("Digite um numero valido");
+      numero2();
+   }
 
-   calcular();
+   
   
   }
 
@@ -36,46 +56,41 @@ class Calculadora {
 
     switch (operacao) {
       case "+":
-        soma(numeroUm, numeroDois);
+        resultado = soma(numeroUm!, numeroDois!);
+        print("Resultado: $resultado");
         break;
       case "-":
-        subtracao(numeroUm, numeroDois);
+        resultado = subtracao(numeroUm!, numeroDois!);
+        print("Resultado: $resultado");
         break;
       case "/":
-        divisao(numeroUm, numeroDois);
+        resultado = divisao(numeroUm!, numeroDois!);
+        print("Resultado: $resultado");
         break;
       case "*":
-        multiplicacao(numeroUm, numeroDois); 
+        resultado = multiplicacao(numeroUm!, numeroDois!); 
+        print("Resultado: $resultado");
         break; 
-      
       default: 
         print("Operação invalida");
-        return;
+        run();
     }
 
   }
-   
-  void soma(a, b){
-    double resultado = a + b;
-    print("Resultado: $resultado");
-    
-  }
 
-  void subtracao(a, b){
-   double resultado = a - b;
-   print("Resultado: $resultado");
+  double soma(double num1,double num2) => num1+num2;
     
-  }
+  double subtracao(double num1,double num2) => num1-num2;
+  
+  double? divisao(double num1, double num2) {
+    if (num2 != 0) {
+      return num1 / num2;
+    } else {
+      print("Não é possível dividir por zero");
+      return null;
+    }
+}
 
-  void divisao(a, b){
-   double resultado = a / b;
-   print("Resultado: $resultado");
-    
-  }
-
-  void multiplicacao(a, b){
-   double resultado = a * b;
-   print("Resultado: $resultado");
-    
-  }
+  double multiplicacao(double num1,double num2) => num1*num2;
+  
 }
