@@ -13,14 +13,14 @@ Este projeto é uma **calculadora interativa no terminal**, feita em [Dart](http
 
 ---
 ## Como usar
-#Clone o repositório:
-1. git clone https://github.com/seu-usuario/nome-do-repo.git
+# Clone o repositório:
+1. git clone https://github.com/JDeyvisson/Calculadora-Dart
 
-#Entre na pasta do projeto:
+# Entre na pasta do projeto:
 2. cd nome-do-repo
 
-#Instale as dependências:
+# Instale as dependências:
 3. dart pub get
 
-#Execute o programa:
+# Execute o programa:
 4. dart run
